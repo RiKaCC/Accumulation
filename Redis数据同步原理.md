@@ -1,0 +1,2 @@
+# 复制
+Redis通过使用配置master-slave来进行最基本的复制。slave实例可以可以精确的复制master实例的数据。如果断链，slave会自动重连，不论master发生任何情况，slave都会尝试去成为master的精确副本。
