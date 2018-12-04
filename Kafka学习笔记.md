@@ -12,7 +12,8 @@ partition可以分布在多台broker上。如果只有一台broker，那么会�
 
 在partition中，都有一个offset来记录该partition消费的位置。
 
-使用partition的好处：
+### 使用partition的好处：
+
   - 能处理更多的消息，不受单台机器的限制。
   - partition能作为并行处理的单元，并发。
   - 由消费者控制offset，可以做到单partition灵活消费。broker是无状态的。
