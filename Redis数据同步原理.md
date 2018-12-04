@@ -1,6 +1,3 @@
-原文[https://redis.io/topics/replication]
-
-
 # 复制
 Redis 支持简单且易用的主从复制（master-slave replication）功能， 该功能可以让从服务器(slave server)成为主服务器(master server)的精确复制品。
 
