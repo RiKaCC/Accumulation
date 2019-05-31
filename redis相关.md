@@ -34,3 +34,6 @@ redis进程会fork来创建子进程，RDB的持久化由子进程来负责，�
 #### AOF
 以独立日志的方式记录每次的写命令，重启时仔重新执行AOF日志里记录的命令，来达到数据回复的目的。
 - [AOF官网文档](https://redisbook.readthedocs.io/en/latest/internal/aof.html)
+
+### Redis大量数据插入
+- [Redis大量数据插入](http://www.redis.cn/topics/mass-insert.html)
