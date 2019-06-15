@@ -1,3 +1,5 @@
+https://github.com/zqjflash/http2-protocol
+
 HTTP 2.0 协议详解
 一、HTTP 2.0：改进传输性能
 HTTP 2.0 的主要目标是改进传输性能，实现低延迟和高吞吐量。从另一方面看，HTTP 的高层协议语义并不会因为这次版本升级而受影响。所有HTTP 首部、值，以及它们的使用场景都不会变。
