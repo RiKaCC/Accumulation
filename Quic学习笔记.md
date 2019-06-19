@@ -73,13 +73,24 @@ Q1: Quic的多路复用实现？
 A1: Quic的多路复用类似于Http2，但是Quic的优势在于，一个连接上的多个stream之间没有依赖，其实也就是独立的.
 
 Q2: Quic是基于UDP的，是怎么做到有序，可靠的？
+A1：Quic的每一个包都有一个Packet Number（类似于TCP的sequence number）,并且每一个Packet Number都单调递增。
+    单调递增的好处就是，解决了重传的歧义。
+    比如一个为N的包，出现了超时，发起了重传，然后客户端收到了ACK，由于序列号都是N，这时你并不知道这个ACK是原始数据包的ACK，还是重传包的ACK。
+    Packet Number采用了单调递增，如果N发生了超时，这时会重传N+M，如果客户端收到的ACK N，那么就知道这时原始的请求N。
+    如果收到了ACK N+M，那么就知道是发送的N+M，这样的好处是可以精确的计算出RTT。
+    如果只是单纯的依靠递增的Packet Number也是无法保证数据的顺序性和可靠性的，如果N丢失了，重传了N+2，那么N+2是会放在N+1之后的。
+    所以Quic还用了Stream Offset的概念。
+    Packet N的Stream Offset为x, 而Packet N+1的Stream Offset为y, 如果Packet N丢失了，重传后Packet N+2，但是Packet N+2的Stream Offset还是x，
+    这样哪怕Packet N+2在Packet N+1之后被收到，也能处理知道Packet N+2是Packet N+1之前的那个包。
 ```
 
 ### Quic的优点
 #### 1. 精细的流量控制
 依赖于三种关键帧
 window_update帧，告诉对端自己“最多可以”接收的字节数的绝对偏移量。
+
 blocked帧，告诉对端，流量控制被阻塞了，暂时无法发送。
+
 stop_waiting帧，通知对端，不应该继续等待包小于特定值的包了。
 
 #### 2. 无队头阻塞的多路复用
