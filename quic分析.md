@@ -76,7 +76,7 @@
 2019/07/01 21:26:02 server Creating AEAD for forward-secure encryption.
 ```
 
-- Server Send REJ
+- Server Send SHLO
 ```
 2019/07/01 21:26:02 server Sending SHLO:
 	SNO : "\xe9H\xd5C\xaa\xb5E\x05~\xfeԪ\xfe<f=\x12\x14\x93h\xd0B&g\xbe)E\xc1\xa3\x84\x02\xcb"
